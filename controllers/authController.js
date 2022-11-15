@@ -50,7 +50,7 @@ exports.signup = catchAsync(async (req, res, next) => {
         role: req.body.role
     });
     const url = `${req.protocol}://${req.get("host")}/me`;
-    console.log(url);
+    // console.log(url);
     await new Email(user, url).sendWelcome();
     createSendToken(user, 201, res);
 });
@@ -175,7 +175,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     //create url of reset
 
     const resetURL = `${req.protocol}://${req.get("host")}/api/v1/users/resetPassword/${resetToken}`;
-    console.log(resetURL);
+    // console.log(resetURL);
     const message = `Forgot your Password? Submit a PATCH request with your new password and passwordConfirm to ${resetURL}.\nIf you didn't forget your password, ignore this mail.`;
     try {
 
@@ -190,7 +190,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
             mesage: "Token sent to email"
         });
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         user.passwordResetToken = undefined;
         user.passwordResetExpiry = undefined;
         user.save({

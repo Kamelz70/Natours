@@ -22,7 +22,7 @@ const sharp = require('sharp');
 //     next();
 // }
 exports.checkBody = (req, res, next) => {
-    console.log('checking body');
+    // console.log('checking body');
     if (!req.body.name) {
         return res.status(400).json({
             status: 'fail',
