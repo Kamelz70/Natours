@@ -12,6 +12,7 @@ dotenv.config({
 });
 console.log("Connecting to DB");
 const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
+console.log("DB connection Link:", DB);
 mongoose.connect(DB, {
     useNewUrlParser: true,
     useCreateIndex: true,
