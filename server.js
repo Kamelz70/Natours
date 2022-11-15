@@ -11,7 +11,7 @@ dotenv.config({
     path: './config.env',
 });
 console.log("Connecting to DB");
-const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
+const DB = process.env.DATABASE.replace('<PASSWdORD>', process.env.DATABASE_PASSWORD);
 console.log("DB connection Link:", DB);
 mongoose.connect(DB, {
     useNewUrlParser: true,
@@ -22,6 +22,8 @@ mongoose.connect(DB, {
 }).then(() => {
     // console.log(connection.connections);
     console.log('successful connection');
+}).catch(err => {
+    console.log('DB connection error:', err.message)
 });
 
 // const testTour = new Tour({
