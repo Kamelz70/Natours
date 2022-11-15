@@ -17,6 +17,7 @@ const sendErrorProd = (req, res, err) => {
     if (req.originalUrl.startsWith('/api')) {
         //Operational error, not from dev
         if (err.isOperational) {
+            console.error("Error: 😢", err);
             return res.status(err.statusCode).json({
                 status: err.status,
                 message: err.message,
@@ -33,6 +34,7 @@ const sendErrorProd = (req, res, err) => {
         //Rendered Website
         //Operational error, not from dev
         if (err.isOperational) {
+            console.error("Error: 😢", err);
             return res.status(err.statusCode).render('error', {
                 title: "Something Went Wrong",
                 msg: err.message
