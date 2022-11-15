@@ -33,7 +33,7 @@ class APIFeatures {
     limitFields() {
         // 3) projecting (field limiting)
         let fieldsString = this.queryJSON.fields || "";
-        console.log(fieldsString);
+        // console.log(fieldsString);
         fieldsString = fieldsString.split(',').join(" ");
         this.mongooseQuery = this.mongooseQuery.select(fieldsString);
         return this;

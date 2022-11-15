@@ -27,7 +27,6 @@ if (mapBox) {
 }
 
 if (loginForm) {
-    console.log("found login form");
     loginForm.addEventListener("submit", e => {
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
@@ -60,7 +59,6 @@ if (updatePasswordForm) {
     updatePasswordForm.addEventListener("submit", async e => {
         e.preventDefault();
         const passwordButton = document.querySelector('.btn--save-password');
-        console.log(passwordButton);
         passwordButton.textContent = "Updating..."
         const passwordCurrent = document.getElementById("password-current").value;
         const password = document.getElementById("password").value;

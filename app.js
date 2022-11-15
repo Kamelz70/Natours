@@ -8,8 +8,8 @@ const mongoSanitize = require('express-mongo-sanitize');
 // const cors = require('cors');
 const xss = require('xss-clean');
 //multer used for multipart form
-const multer = require('multer');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 const rateLimit = require('express-rate-limit');
 const toursRouter = require('./routers/toursRouter');
 const usersRouter = require('./routers/usersRouter');
@@ -31,6 +31,7 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'Content-Type', 'Authorization');
     next();
 })
+app.use(compression());
 ///////////////////////////    Global MiddleWare
 
 //Set security http headers

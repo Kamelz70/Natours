@@ -43,6 +43,6 @@ export const displayMap = locations => {
             right: 100,
         }
     });
-    console.log(locations);
+    // console.log(locations);
 
 }

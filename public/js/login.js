@@ -20,7 +20,7 @@ export const login = async (email, password) => {
                 location.assign('/');
             }, 0);
         }
-        console.log(res);
+        // console.log(res);
     } catch (err) {
         showAlert("error", err.response.data.message);
 
@@ -38,7 +38,7 @@ export const logout = async () => {
             location.reload(true);
         }
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         showAlert("error", "Logut Error, Try again");
     }
 }

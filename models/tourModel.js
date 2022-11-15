@@ -207,7 +207,6 @@ tourSchema.pre(/^find/, function (next) {
 tourSchema.post(/^find/, function (docs, next) {
 
     const duration = (Date.now() - this.start);
-    console.log(`fetching took ${duration} milliseconds`);
     next();
 })
 

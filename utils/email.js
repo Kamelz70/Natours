@@ -11,7 +11,7 @@ module.exports = class Email {
     newTransport() {
         if (process.env.NODE_ENV === 'production') {
             //sendGrid transporter
-            console.log('sending production mail');
+            // console.log('sending production mail');
             return nodemailer.createTransport({
                 // service:"Gmail",
                 host: 'smtp.sendgrid.net',
