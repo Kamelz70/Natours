@@ -15,9 +15,6 @@ const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSW
 console.log("DB connection Link:", DB);
 mongoose.connect(encodeURI(DB), {
     useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: true,
-    useUnifiedTopology: true
 
 }).then(() => {
     // console.log(connection.connections);

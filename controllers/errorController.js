@@ -44,8 +44,7 @@ const sendErrorProd = (req, res, err) => {
         // Bug, Don't leak details
         return res.status(500).render('error', {
             title: "Something Went Wrong",
-            msg: err.message
-
+            msg: "Something Went Wrong"
         });
 
     }
