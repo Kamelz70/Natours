@@ -20,6 +20,9 @@ const AppError = require('./utils/appError');
 const GlobalErrorHandler = require('./controllers/errorController');
 
 const app = express();
+//heroku works as a proxy, so we need to trust it
+app.enable('trust proxy');
+
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"))
 // enable access to public folder

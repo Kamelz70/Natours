@@ -50,3 +50,11 @@ process.on("unhandledRejection", (err) => {
         process.exit(1);
     });
 });
+//herkou sends sigterm to shutdown every 24 hours
+process.on("SIGTERM", () => {
+    console.log('SIGTERM recieved, Shutting down gracefully');
+    //server.close gracefully ends execution by handling open requests first
+    server.close(() => {
+        //we don't need to process.exit as sigterm does so
+    });
+});
