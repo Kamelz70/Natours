@@ -42,9 +42,10 @@ const sendErrorProd = (req, res, err) => {
         }
         console.error("Error: 😢", err);
         // Bug, Don't leak details
-        return res.status(500).json({
-            status: 'error',
-            message: 'something went very wrong',
+        return res.status(500).render('error', {
+            title: "Something Went Wrong",
+            msg: err.message
+
         });
 
     }
