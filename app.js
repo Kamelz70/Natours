@@ -5,7 +5,7 @@ const express = require('express');
 // const helmet = require('helmet');
 const hpp = require('hpp');
 const mongoSanitize = require('express-mongo-sanitize');
-// const cors = require('cors');
+const cors = require('cors');
 const xss = require('xss-clean');
 //multer used for multipart form
 const cookieParser = require('cookie-parser');
@@ -18,6 +18,7 @@ const bookingsRouter = require('./routers/bookingsRouter');
 const viewsRouter = require('./routers/viewsRouter');
 const AppError = require('./utils/appError');
 const GlobalErrorHandler = require('./controllers/errorController');
+const bookingsController = require('./controllers/bookingsController');
 
 const app = express();
 //heroku works as a proxy, so we need to trust it
@@ -27,7 +28,18 @@ app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"))
 // enable access to public folder
 app.use(express.static(path.join(__dirname, "public")));
-// app.use(cors);
+//works only on simple requets, (get), put,patch,delete are non simple and need
+app.use(cors());
+//allow a certain domain only for cross origin resource sharing
+// app.use(cors({
+//     origin: "https://www.natours.com"
+// }));
+
+// like get,post
+// non-simple reqs issue a pre-flight phase, and send
+// an options request, it needs to be responded to to
+//ensure the safety of the operation
+app.options('*', cors());
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
@@ -88,11 +100,16 @@ const rateLimiter = rateLimit({
     max: 100, //100 reqs
     message: "Too many requests, wait one hour before using again"
 })
-app.use(rateLimiter);
+app.use('/api', rateLimiter);
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 
 }
+//create webhook for stripe before body parser as it's needed in raw form
+app.post('/webhook-checkout', express.raw({
+    type: 'application/json'
+}), bookingsController.webhookCheckout);
+
 //parse req to read req.body
 app.use(express.json({
     //limit req body
@@ -114,7 +131,6 @@ app.use((req, res, next) => {
 
 
 /////////////////////////////////// Route Handlers
-
 ///////////////////////////////////////////////////// routes
 // app.get('/api/v1/tours', getAllTours);
 // app.post('/api/v1/tours', postTour)

@@ -11,7 +11,9 @@ router.post('/submit-user-data', authController.protect, viewsController.updateU
 
 router.use(authController.isLoggedIn);
 
-router.get('/', bookingsController.createBookingCheckout, viewsController.getOverview);
+router.get('/',
+    // bookingsController,
+    viewsController.getOverview);
 router.get('/tour/:slug', viewsController.getTour);
 router.get('/login', viewsController.getLoginForm);
 
