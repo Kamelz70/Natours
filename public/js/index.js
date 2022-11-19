@@ -81,7 +81,6 @@ if (updatePasswordForm) {
 if (bookBtn) {
     bookBtn.addEventListener('click', e => {
         e.target.textContent = 'Processing...';
-
         //tour-id converts to tourId
         const {
             tourId
