@@ -12,7 +12,7 @@ const createBookingCheckout = catchAsync(async (session) => {
     const userId = (await User.findOne({
         email: session.customer_email
     })).id;
-    const price = session.line_items[0].price_data.unit_amount / 100;
+    const price = session.amount_subtotal / 100;
 
     await Booking.create({
         tourId,
