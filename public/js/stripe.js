@@ -5,7 +5,7 @@ const stripe = Stripe('pk_test_51M4ELiHEzzss8Cm6IneYPNqj0t710LtvAUx5EAcTshhxDQAl
 export const bookTour = async tourId => {
     try {
         //1)Get API Checkout session
-        const session = await axios(`http://127.0.0.1:3000/api/v1/bookings/checkout-session/${tourId}`);
+        const session = await axios(`https://natourskamelaliz.herokuapp.com/api/v1/bookings/checkout-session/${tourId}`);
         // 2) create checkout form + charge credit card
         stripe.redirectToCheckout({
             sessionId: session.data.session.id
