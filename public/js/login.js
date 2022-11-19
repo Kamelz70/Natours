@@ -3,9 +3,10 @@ import axios from 'axios';
 import {
     showAlert
 } from './alerts';
-const rootURL = "http://127.0.0.1:3000/api/v1";
+const rootURL = `https://natourskamelaliz.herokuapp.com/api/v1`;
 export const login = async (email, password) => {
     try {
+        console.log(rootURL);
         const res = await axios({
             method: "POST",
             url: `${rootURL}/users/login`,

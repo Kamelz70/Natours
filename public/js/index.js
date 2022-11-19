@@ -25,7 +25,7 @@ if (mapBox) {
     const locations = JSON.parse(mapBox.dataset.locations);
     displayMap(locations);
 }
-
+console.log('hey', window.location.href);
 if (loginForm) {
     loginForm.addEventListener("submit", e => {
         const email = document.getElementById("email").value;
