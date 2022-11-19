@@ -4,7 +4,7 @@ const authController = require("../controllers/authController");
 const bookingsController = require("../controllers/bookingsController");
 
 const router = express.Router();
-router.use(viewsController.alerts)
+router.use(bookingsController.alerts)
 //protected routes don;t need isLoggedIn for duplicate ops
 router.get('/me', authController.protect, viewsController.getAccount);
 router.get('/my-tours', authController.protect, viewsController.getMyTours);
