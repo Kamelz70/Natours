@@ -21,7 +21,17 @@ const createBookingCheckout = catchAsync(async (session) => {
     });
 
 });
-
+//////////////////////////////////////////////
+// Middleware
+exports.alerts = (req, res, next) => {
+    const {
+        alert
+    } = req.query;
+    if (alert === 'booking') {
+        res.locals.alert = "Your booking was successful! Please ckeck your E-mail for a confirmation. If your booking doesn't show up immediately, come back later";
+    }
+    next();
+}
 //////////////////////////////////////////////
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     //get currently booked tour
@@ -33,7 +43,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
         //unsafe operation ,use stripe webhooks instead
         //any user can use this link too book without paying
         // success_url: `${req.protocol}://${req.get('host')}/?tour=${req.params.tourID}&user=${req.user.id}&price=${tour.price}`,
-        success_url: `${req.protocol}://${req.get('host')}/my-tours`,
+        success_url: `${req.protocol}://${req.get('host')}/my-tours?alert=booking`,
         cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`,
         customer_email: req.user.email,
         // referenceID used to save the tourID into the sessuion
