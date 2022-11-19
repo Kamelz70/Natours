@@ -15,8 +15,8 @@ const createBookingCheckout = catchAsync(async (session) => {
     const price = session.amount_subtotal / 100;
 
     await Booking.create({
-        tourId,
-        userId,
+        tour: tourId,
+        user: userId,
         price
     });
 
