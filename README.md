@@ -10,5 +10,3 @@ once a user signs up or logs-in, they can book a tour by opening its' page and p
 below link
 
 For the APIs documentation: https://documenter.getpostman.com/view/12060651/2s84DuNzub
-
-Heroku-published site: https://natourskamelaliz.herokuapp.com/
